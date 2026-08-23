@@ -50,3 +50,48 @@ O fluxo principal do aplicativo será:
                      ┌─────────────┐
                      │   NÍVEL 5   │
                      └─────────────┘
+                     ---
+
+## 3. Tela Inicial
+
+![Tela Inicial](wireframes/01-tela-inicial.png)
+
+---
+
+## 4. Menu Principal
+
+![Menu Principal](wireframes/02-menu-principal.png)
+
+---
+
+## 5. Seleção de Nível
+
+![Seleção de Nível](wireframes/03-selecao-nivel.png)
+
+---
+
+## 6. Níveis do Jogo
+
+### Nível 01
+
+![Nível 01](wireframes/04-jogo-nivel-01.png)
+
+### Nível 02
+
+![Nível 02](wireframes/05-jogo-nivel-02.png)
+
+### Nível 03
+
+![Nível 03](wireframes/06-jogo-nivel-03.png)
+
+---
+
+## 7. Tela de Pausa
+
+![Tela de Pausa](wireframes/07-pausa.png)
+
+---
+
+## 8. Tela de Resultado
+
+![Tela de Resultado](wireframes/08-resultado.png)
