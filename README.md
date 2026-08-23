@@ -1,96 +1,175 @@
-# 🎮 Brick Rush
+# 🧱 Brick Rush
 
 ## Projeto Integrador VI-A
 
-Aplicativo móvel desenvolvido para a disciplina de Projeto Integrador VI-A, com o objetivo de aplicar conhecimentos de desenvolvimento para dispositivos móveis, design, usabilidade e fundamentos de Inteligência Artificial.
+Aplicativo móvel desenvolvido como parte da disciplina **Projeto Integrador VI-A**, com a proposta de desenvolver um jogo inspirado no clássico **Brick Breaker (Breakout)**.
 
-O projeto consiste no desenvolvimento de um jogo inspirado no clássico **Brick Breaker (Breakout)**, no qual o jogador controla uma plataforma móvel para rebater uma bola e destruir uma parede de blocos.
-
----
-
-## 🎯 Objetivo do Projeto
-
-Desenvolver um aplicativo móvel que implemente um jogo de Brick Breaker, proporcionando uma experiência simples, intuitiva e responsiva em dispositivos móveis.
-
-O jogador deverá controlar o paddle, rebater a bola e destruir todos os blocos presentes em cada nível.
-
-O jogo contará com diferentes configurações de cores e tamanhos dos blocos, além de diferentes padrões de paredes para os níveis.
+O projeto será desenvolvido utilizando **Flutter** e **Dart**, com utilização do **Flame Engine** para a implementação dos elementos e mecânicas do jogo.
 
 ---
 
-## 📱 Funcionalidades previstas
+## 🎮 Sobre o projeto
 
-- Tela inicial do aplicativo;
-- Identificação dos integrantes do grupo;
-- Início do jogo;
-- Configuração das cores dos blocos;
-- Configuração dos tamanhos dos blocos;
-- Controle da plataforma (paddle);
+O Brick Rush é um jogo mobile baseado no conceito clássico do Brick Breaker.
+
+O jogador controla uma plataforma móvel, denominada **paddle**, responsável por rebater uma bola que se movimenta pela área de jogo.
+
+O objetivo é destruir todos os blocos presentes na parte superior da tela. Ao destruir todos os blocos de uma fase, o próximo nível será iniciado automaticamente.
+
+O jogo contará com diferentes configurações de paredes de blocos, incluindo padrões fixos e estruturas que poderão utilizar aleatoriedade.
+
+---
+
+## 🎯 Objetivo
+
+O objetivo principal do projeto é projetar, prototipar e posteriormente implementar uma aplicação para dispositivos móveis, aplicando conceitos de:
+
+- Desenvolvimento para dispositivos móveis;
+- Componentes de interface;
+- Design de interfaces;
+- Usabilidade;
+- Interação com o usuário;
+- Desenvolvimento de jogos;
+- Controle de colisões;
+- Reprodução de sons;
+- Organização de projetos de software;
+- Fundamentos de Inteligência Artificial e aleatoriedade.
+
+---
+
+## 📱 Funcionalidades planejadas
+
+A aplicação contará inicialmente com uma tela principal contendo três opções:
+
+### 1. Integrantes
+
+Tela destinada à apresentação do integrante responsável pelo desenvolvimento do projeto.
+
+### 2. Iniciar jogo
+
+Permite iniciar o jogo e acessar os diferentes níveis do Brick Rush.
+
+### 3. Configurações
+
+Permite configurar características relacionadas ao padrão visual dos blocos e aos tamanhos utilizados na construção das paredes.
+
+---
+
+## 🧱 Níveis do jogo
+
+O jogo será composto por pelo menos **5 níveis diferentes**.
+
+Cada nível possuirá uma configuração própria de blocos.
+
+As paredes poderão ser:
+
+- Fixas;
+- Geradas a partir de padrões predefinidos;
+- Geradas utilizando algum nível de aleatoriedade.
+
+A representação dos blocos será baseada em uma estrutura semelhante a uma matriz, na qual cada posição poderá representar a existência ou ausência de um bloco.
+
+Ao destruir todos os blocos de um nível, o próximo nível será iniciado automaticamente.
+
+---
+
+## ⚙️ Mecânicas previstas
+
+Entre as principais mecânicas do jogo estão:
+
 - Movimento da bola;
-- Detecção de colisões;
-- Destruição dos blocos;
-- Sistema de níveis;
-- Pelo menos 5 diferentes paredes de blocos;
-- Sons durante o jogo;
-- Som no início da fase;
-- Som durante a colisão da bola com o paddle;
-- Opção de reiniciar o nível;
-- Opção de avançar para o próximo nível;
-- Progressão automática entre os níveis.
+- Movimento do paddle;
+- Colisão da bola com as paredes;
+- Colisão da bola com o paddle;
+- Colisão da bola com os blocos;
+- Destruição dos blocos após colisão;
+- Progressão automática entre os níveis;
+- Reprodução de som no início da fase;
+- Reprodução de som quando a bola atingir o paddle;
+- Tratamento da perda da bola;
+- Opção de reiniciar o nível atual;
+- Opção de avançar para o próximo nível.
 
 ---
 
 ## 🛠️ Tecnologias
 
-O projeto será desenvolvido utilizando:
+As principais tecnologias previstas para o desenvolvimento são:
 
-- **Flutter**
-- **Dart**
-- **Flame Engine**
-- **Android SDK**
-- **Android Studio**
-- **Visual Studio Code**
-- **Git**
-- **GitHub**
+| Tecnologia | Utilização |
+|---|---|
+| Flutter | Desenvolvimento da aplicação mobile |
+| Dart | Linguagem de programação |
+| Flame Engine | Desenvolvimento das mecânicas do jogo |
+| Android Studio | Ambiente de desenvolvimento e gerenciamento do Android SDK |
+| Visual Studio Code | Editor de código |
+| Git | Controle de versão |
+| GitHub | Hospedagem do código e documentação |
 
-O aplicativo será desenvolvido inicialmente para dispositivos Android.
+Mais detalhes podem ser encontrados em:
 
----
-
-## 📚 Documentação
-
-A documentação do projeto está organizada nos seguintes arquivos:
-
-### Ambiente e tecnologias
-
-[01 - Tecnologias e Ambiente](docs/01-tecnologias.md)
-
-Documento que apresenta o ambiente de desenvolvimento, tecnologias utilizadas, linguagens, ferramentas e processo previsto para geração do APK.
-
-### Wireframes
-
-[02 - Wireframes](docs/02-wireframes.md)
-
-Documento contendo a proposta de interface do aplicativo, fluxo de navegação, telas principais e níveis do jogo.
-
-### Construção dos níveis
-
-[03 - Construção dos Níveis](docs/03-construcao-dos-niveis.md)
-
-Documento que apresenta os métodos planejados para construção das paredes de blocos e geração dos diferentes níveis.
+➡️ [Documentação de tecnologias](docs/01-tecnologias.md)
 
 ---
 
-## 🎮 Níveis
+## 🎨 Wireframes
 
-O jogo deverá possuir pelo menos cinco níveis diferentes.
+O projeto contará com wireframes de alta definição para representar a estrutura das telas antes da implementação.
 
-Os níveis poderão utilizar padrões fixos ou algum grau de aleatoriedade para determinar quais posições da matriz de blocos estarão ocupadas.
+Serão planejadas as seguintes telas:
 
-Exemplo conceitual:
+- Tela inicial;
+- Tela de integrantes;
+- Tela de configurações;
+- Tela de seleção/início do jogo;
+- Nível 1;
+- Nível 2;
+- Nível 3;
+- Nível 4;
+- Nível 5;
+- Tela de perda;
+- Tela de conclusão de nível.
+
+A documentação dos wireframes está disponível em:
+
+➡️ [Documentação dos Wireframes](docs/02-wireframes.md)
+
+---
+
+## 🧩 Construção dos níveis
+
+A construção das paredes de blocos será documentada considerando uma estrutura semelhante a uma matriz.
+
+Cada posição da matriz poderá representar:
+
+- `1` — existência de um bloco;
+- `0` — espaço vazio.
+
+Essa abordagem permite criar diferentes formatos de paredes e também aplicar aleatoriedade na composição dos níveis.
+
+Mais informações:
+
+➡️ [Construção das paredes de blocos e níveis](docs/03-construcao-dos-niveis.md)
+
+---
+
+## 📂 Organização da documentação
+
+A documentação do projeto está organizada da seguinte forma:
 
 ```text
-■■■■■■■■
-■■■■■■■■
-■■■■■■■■
-■■■■■■■■
+brick-rush/
+│
+├── docs/
+│   ├── 01-tecnologias.md
+│   ├── 02-wireframes.md
+│   └── 03-construcao-dos-niveis.md
+│
+├── lib/
+├── android/
+├── assets/
+├── test/
+│
+├── README.md
+├── pubspec.yaml
+└── .gitignore
