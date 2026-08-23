@@ -117,3 +117,13 @@ docs: documenta construção dos níveis
 feat: implementa tela inicial
 feat: implementa movimentação da bola
 feat: implementa colisão dos blocos
+---
+
+## 6. Geração do APK
+
+Após o desenvolvimento e os testes, o APK de versão final será gerado utilizando o Flutter.
+
+Com o terminal aberto na pasta do projeto:
+
+```bash
+flutter build apk --release
