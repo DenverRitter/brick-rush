@@ -172,7 +172,7 @@ brick-rush/
 │
 ├── README.md
 ├── pubspec.yaml
-└── .gitignore
+└── └── .gitignore
 ## 📚 Documentação
 
 ### 01 — Tecnologias e Ambiente

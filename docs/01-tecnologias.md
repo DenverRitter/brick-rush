@@ -2,29 +2,25 @@
 
 ## 1. Introdução
 
-O projeto **Brick Rush** será desenvolvido como uma aplicação para dispositivos móveis, tendo como plataforma principal o sistema operacional Android.
+O projeto Brick Rush será desenvolvido como uma aplicação para dispositivos móveis, tendo como plataforma principal o sistema operacional Android.
 
-A escolha das tecnologias considera os conhecimentos desenvolvidos nas disciplinas de Dispositivos Móveis I e Fundamentos de Inteligência Artificial, além das necessidades específicas de um jogo 2D, como movimentação de objetos, interação com o usuário, controle de colisões, gerenciamento de níveis e reprodução de sons.
+A escolha das tecnologias considera os conhecimentos desenvolvidos nas disciplinas de Dispositivos Móveis I e Fundamentos de Inteligência Artificial, além da necessidade de desenvolver uma aplicação com interface gráfica, interação em tempo real, movimentação de objetos e detecção de colisões.
 
 ---
 
 ## 2. Ambiente de Desenvolvimento
 
-O desenvolvimento do projeto será realizado em um computador com sistema operacional **Windows 11**.
+O desenvolvimento será realizado em um computador com sistema operacional Windows 11.
 
-As principais ferramentas utilizadas no desenvolvimento serão:
+As principais ferramentas utilizadas serão:
 
-- Visual Studio Code;
 - Android Studio;
+- Visual Studio Code;
 - Flutter SDK;
 - Dart SDK;
 - Android SDK;
 - Git;
 - GitHub.
-
-O **Visual Studio Code** será utilizado como principal editor para desenvolvimento e documentação do projeto.
-
-O **Android Studio** será utilizado principalmente para gerenciamento do Android SDK, configuração do ambiente Android e utilização do emulador para testes.
 
 ---
 
@@ -32,122 +28,165 @@ O **Android Studio** será utilizado principalmente para gerenciamento do Androi
 
 ### Dart
 
-A linguagem de programação escolhida para o desenvolvimento do aplicativo é a **Dart**, utilizada pelo framework Flutter.
+A linguagem de programação utilizada será **Dart**, linguagem adotada pelo framework Flutter.
 
-A linguagem será utilizada para implementar:
-
-- lógica da aplicação;
-- gerenciamento das telas;
-- regras do jogo;
-- movimentação da bola;
-- movimentação do paddle;
-- controle dos blocos;
-- gerenciamento dos níveis;
-- configurações;
-- interação com o usuário.
+O Dart será responsável pela implementação da lógica da aplicação, gerenciamento das telas, regras do jogo, movimentação dos objetos, controle dos níveis e demais funcionalidades.
 
 ---
 
 ## 4. Framework Flutter
 
-O **Flutter** será utilizado como framework principal para o desenvolvimento da aplicação móvel.
+O **Flutter** será utilizado como framework principal para desenvolvimento da aplicação móvel.
 
-O Flutter permite desenvolver aplicações utilizando uma única base de código, possibilitando a criação das interfaces e a execução do aplicativo em dispositivos Android.
+A utilização do Flutter permite desenvolver a interface e a lógica da aplicação utilizando uma única base de código.
 
-No projeto Brick Rush, o Flutter será utilizado para:
+No projeto, o Flutter será responsável principalmente por:
 
-- criação das telas;
-- navegação entre telas;
-- criação dos componentes da interface;
-- tela inicial;
-- menu principal;
-- tela de integrantes;
-- tela de configurações;
-- seleção dos níveis;
-- integração com o jogo;
-- geração do aplicativo Android.
+- Construção das telas;
+- Navegação;
+- Componentes de interface;
+- Configurações;
+- Integração com o mecanismo do jogo;
+- Geração da aplicação Android.
 
 ---
 
 ## 5. Flame Engine
 
-Para o desenvolvimento das mecânicas do jogo será utilizado o **Flame Engine**.
+Para implementação das características específicas do jogo será utilizado o **Flame Engine**.
 
-O Flame é um motor de jogos desenvolvido para aplicações Flutter e possui recursos apropriados para o desenvolvimento de jogos 2D.
+O Flame é um motor de jogos desenvolvido para aplicações Flutter e oferece recursos adequados para jogos 2D.
 
-No Brick Rush, o Flame será utilizado para auxiliar na implementação de:
+No Brick Rush, sua utilização será planejada para:
 
-- gerenciamento do jogo;
-- movimentação da bola;
-- movimentação do paddle;
-- gerenciamento dos blocos;
-- detecção de colisões;
-- atualização dos objetos;
-- controle dos níveis;
-- gerenciamento do estado do jogo;
-- reprodução de elementos relacionados ao jogo.
-
-A utilização do Flame permite organizar os elementos do jogo de maneira adequada para uma aplicação 2D.
+- Gerenciamento do jogo;
+- Atualização dos objetos;
+- Movimentação da bola;
+- Controle do paddle;
+- Detecção de colisões;
+- Gerenciamento dos blocos;
+- Controle dos níveis;
+- Atualização do estado do jogo.
 
 ---
 
 ## 6. Android Studio
 
-O **Android Studio** será utilizado como ferramenta de apoio ao desenvolvimento Android.
+O Android Studio será utilizado para:
 
-Suas principais funções no projeto serão:
+- Gerenciamento do Android SDK;
+- Configuração do emulador;
+- Criação e gerenciamento de dispositivos virtuais;
+- Execução e testes da aplicação;
+- Suporte às ferramentas de desenvolvimento Android.
 
-- gerenciamento do Android SDK;
-- configuração do ambiente Android;
-- criação e gerenciamento do dispositivo virtual;
-- execução do aplicativo no emulador;
-- realização de testes;
-- suporte às ferramentas necessárias para compilação Android.
-
-Foi utilizado um dispositivo virtual Android para realizar os testes do aplicativo durante o desenvolvimento.
+Foi configurado um dispositivo virtual Android para realização dos testes durante o desenvolvimento.
 
 ---
 
 ## 7. Visual Studio Code
 
-O **Visual Studio Code** será utilizado como principal editor do projeto.
+O Visual Studio Code será utilizado como principal editor de código.
 
 A ferramenta será utilizada para:
 
-- edição dos arquivos Dart;
-- edição dos arquivos Markdown;
-- organização dos diretórios;
-- execução dos comandos Flutter;
-- execução dos comandos Git;
-- acompanhamento das alterações;
-- desenvolvimento e manutenção do projeto.
-
-A documentação da primeira etapa também será mantida dentro do projeto utilizando arquivos no formato Markdown (`.md`).
+- Edição dos arquivos Dart;
+- Edição dos arquivos Markdown;
+- Organização do projeto;
+- Execução de comandos Flutter;
+- Execução de comandos Git;
+- Controle do código-fonte.
 
 ---
 
 ## 8. Git e GitHub
 
-O **Git** será utilizado como sistema de controle de versão do projeto.
+O Git será utilizado para controle de versão do projeto.
 
-O **GitHub** será utilizado para hospedagem do repositório público, armazenamento do código-fonte e disponibilização da documentação exigida na disciplina.
+O GitHub será utilizado como plataforma de hospedagem do repositório público exigido pela disciplina.
 
-Repositório do projeto:
+O projeto será desenvolvido de forma incremental, utilizando commits organizados e seguindo a convenção **Conventional Commits**.
 
-**https://github.com/DenverRitter/brick-rush**
-
-O desenvolvimento será organizado utilizando commits incrementais.
-
-Também será utilizada a convenção **Conventional Commits** para facilitar a identificação das alterações realizadas no projeto.
-
-Exemplos de commits utilizados:
+Exemplos de commits utilizados no projeto:
 
 ```text
 chore: inicializa projeto Flutter
-docs: adiciona documentação inicial do projeto
+docs: adiciona documentação das tecnologias
 docs: adiciona wireframes
 docs: documenta construção dos níveis
-docs: atualiza documentação das tecnologias
 feat: implementa tela inicial
 feat: implementa movimentação da bola
-feat: implementa colisão dos blocos 
+feat: implementa colisão dos blocos
+```
+
+---
+
+## 9. Geração do APK
+
+Após o desenvolvimento e os testes, o aplicativo poderá ser compilado para Android utilizando o Flutter.
+
+Primeiramente, as dependências do projeto podem ser atualizadas com:
+
+```bash
+flutter pub get
+```
+
+Para gerar o APK em versão de lançamento:
+
+```bash
+flutter build apk --release
+```
+
+Após a execução do comando, o arquivo APK será gerado no seguinte diretório:
+
+```text
+build/app/outputs/flutter-apk/app-release.apk
+```
+
+O APK poderá posteriormente ser instalado em um dispositivo Android ou utilizado para testes.
+
+---
+
+## 10. Processo de Desenvolvimento
+
+O processo de desenvolvimento será realizado de forma incremental.
+
+As principais etapas previstas são:
+
+1. Planejamento da interface;
+2. Criação dos wireframes;
+3. Definição das paredes dos níveis;
+4. Configuração do projeto Flutter;
+5. Implementação das telas;
+6. Implementação do jogo;
+7. Implementação da movimentação da bola;
+8. Implementação do paddle;
+9. Implementação das colisões;
+10. Implementação dos níveis;
+11. Implementação dos efeitos sonoros;
+12. Testes no dispositivo Android;
+13. Geração do APK.
+
+---
+
+## 11. Resumo das Tecnologias
+
+| Tecnologia | Utilização |
+|---|---|
+| Flutter | Desenvolvimento da aplicação mobile |
+| Dart | Linguagem de programação |
+| Flame Engine | Desenvolvimento das mecânicas do jogo |
+| Android Studio | Android SDK e emulador |
+| Visual Studio Code | Edição e organização do código |
+| Git | Controle de versão |
+| GitHub | Hospedagem do código e documentação |
+
+---
+
+## 12. Conclusão
+
+A combinação entre Flutter, Dart e Flame Engine permitirá desenvolver o Brick Rush utilizando uma estrutura adequada para aplicações móveis e jogos 2D.
+
+O uso do Git e GitHub permitirá manter o histórico do desenvolvimento e organizar a documentação do projeto de forma incremental.
+
+A geração do APK será realizada utilizando o comando de compilação do Flutter, permitindo posteriormente a instalação e execução do aplicativo em dispositivos Android.
