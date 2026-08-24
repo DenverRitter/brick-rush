@@ -128,11 +128,13 @@ Com o terminal aberto na pasta do projeto:
 ```bash
 flutter build apk --release
 ---
+---
+
 ## 9. Geração do APK
 
-Após a configuração do projeto e instalação das dependências, o aplicativo poderá ser executado e compilado utilizando os comandos do Flutter.
+Após a configuração do projeto e instalação das dependências, o aplicativo poderá ser compilado para Android utilizando o Flutter.
 
-Para atualizar as dependências do projeto:
+Para atualizar as dependências:
 
 ```bash
 flutter pub get
