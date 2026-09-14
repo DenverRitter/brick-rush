@@ -48,14 +48,11 @@ class MenuPage extends StatelessWidget {
                     color: Colors.cyanAccent,
                   ),
                 ),
-
                 const SizedBox(height: 12),
-
                 const Text(
                   'Break the walls!',
                   style: TextStyle(fontSize: 18, color: Colors.white70),
                 ),
-
                 const SizedBox(height: 55),
 
                 _menuButton(context, 'JOGAR', Icons.play_arrow, () {
@@ -71,18 +68,26 @@ class MenuPage extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
-                      title: const Text('Integrantes'),
+                      backgroundColor: const Color(0xFF10162B),
+                      title: const Text(
+                        'Integrante',
+                        style: TextStyle(color: Colors.cyanAccent),
+                      ),
                       content: const Text(
-                        'Projeto desenvolvido individualmente.\n\n'
+                        'Denver Ritter\n\n'
                         'Brick Rush\n'
                         'Projeto Integrador VI-A',
+                        style: TextStyle(color: Colors.white, fontSize: 17),
                       ),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text('FECHAR'),
+                          child: const Text(
+                            'FECHAR',
+                            style: TextStyle(color: Colors.cyanAccent),
+                          ),
                         ),
                       ],
                     ),
@@ -95,18 +100,27 @@ class MenuPage extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
-                      title: const Text('Configurações'),
+                      backgroundColor: const Color(0xFF10162B),
+                      title: const Text(
+                        'Configurações',
+                        style: TextStyle(color: Colors.cyanAccent),
+                      ),
                       content: const Text(
                         'Configurações do Brick Rush\n\n'
                         'Padrão de blocos: Variado\n'
-                        'Níveis disponíveis: 5',
+                        'Níveis disponíveis: 5\n'
+                        'Vidas por nível: 3',
+                        style: TextStyle(color: Colors.white),
                       ),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text('FECHAR'),
+                          child: const Text(
+                            'FECHAR',
+                            style: TextStyle(color: Colors.cyanAccent),
+                          ),
                         ),
                       ],
                     ),
@@ -230,11 +244,110 @@ class GamePage extends StatefulWidget {
 class _GamePageState extends State<GamePage> {
   late BrickRushGame game;
 
+  late int currentLevel;
+
+  int score = 0;
+  int lives = 3;
+
+  GameResult? result;
+
   @override
   void initState() {
     super.initState();
 
-    game = BrickRushGame(level: widget.level);
+    currentLevel = widget.level;
+
+    _createGame();
+  }
+
+  void _createGame() {
+    game = BrickRushGame(
+      level: currentLevel,
+      onScore: _addScore,
+      onLifeLost: _lifeLost,
+      onVictory: _victory,
+      onDefeat: _defeat,
+    );
+  }
+
+  void _addScore() {
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      score += 10;
+    });
+  }
+
+  void _lifeLost() {
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      lives--;
+    });
+
+    if (lives <= 0) {
+      game.pauseEngine();
+
+      setState(() {
+        result = GameResult.defeat;
+      });
+    }
+  }
+
+  void _victory() {
+    if (!mounted) {
+      return;
+    }
+
+    game.pauseEngine();
+
+    setState(() {
+      result = GameResult.victory;
+    });
+  }
+
+  void _defeat() {
+    if (!mounted) {
+      return;
+    }
+
+    game.pauseEngine();
+
+    setState(() {
+      result = GameResult.defeat;
+    });
+  }
+
+  void _restartLevel() {
+    setState(() {
+      result = null;
+      lives = 3;
+      _createGame();
+    });
+  }
+
+  void _nextLevel() {
+    if (currentLevel >= 5) {
+      setState(() {
+        result = GameResult.finished;
+      });
+      return;
+    }
+
+    setState(() {
+      currentLevel++;
+      lives = 3;
+      result = null;
+      _createGame();
+    });
+  }
+
+  void _goBackToLevels() {
+    Navigator.pop(context);
   }
 
   @override
@@ -243,74 +356,212 @@ class _GamePageState extends State<GamePage> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Área do jogo
           GestureDetector(
             behavior: HitTestBehavior.opaque,
 
-            // Movimento da base com o dedo
             onHorizontalDragUpdate: (details) {
               game.movePaddle(details.localPosition.dx);
             },
 
-            // Também permite tocar para posicionar a base
             onTapDown: (details) {
               game.movePaddle(details.localPosition.dx);
             },
 
-            child: GameWidget(game: game),
+            child: GameWidget(key: ValueKey(currentLevel), game: game),
           ),
 
-          // Interface superior
+          // ==================================================
+          // INTERFACE SUPERIOR
+          // ==================================================
           SafeArea(
-            child: Stack(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Indicador do nível
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.black54,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        'NÍVEL ${widget.level}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                // NÍVEL
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: _infoBox('NÍVEL $currentLevel'),
                 ),
 
-                // Botão de pausa
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.pause_circle,
-                        color: Colors.white,
-                        size: 40,
-                      ),
-                      onPressed: _pauseGame,
+                // PONTUAÇÃO
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: _infoBox('PONTOS $score'),
+                ),
+
+                // VIDAS
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: _infoBox('VIDAS $lives'),
+                ),
+
+                // PAUSA
+                Padding(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.pause_circle,
+                      color: Colors.white,
+                      size: 40,
                     ),
+                    onPressed: result == null ? _pauseGame : null,
                   ),
                 ),
               ],
             ),
           ),
+
+          // ==================================================
+          // RESULTADO
+          // ==================================================
+          if (result != null) _buildResultOverlay(),
         ],
       ),
     );
   }
+
+  Widget _infoBox(String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      decoration: BoxDecoration(
+        color: Colors.black54,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildResultOverlay() {
+    String title;
+    String message;
+    IconData icon;
+
+    if (result == GameResult.victory) {
+      title = currentLevel == 5 ? 'PARABÉNS!' : 'VITÓRIA!';
+      message = currentLevel == 5
+          ? 'Você completou todos os níveis!'
+          : 'Todos os blocos foram destruídos.';
+      icon = Icons.emoji_events;
+    } else if (result == GameResult.defeat) {
+      title = 'DERROTA';
+      message = 'Você perdeu todas as suas vidas.';
+      icon = Icons.close;
+    } else {
+      title = 'BRICK RUSH CONCLUÍDO!';
+      message = 'Você terminou os 5 níveis.';
+      icon = Icons.workspace_premium;
+    }
+
+    return Container(
+      color: Colors.black.withValues(alpha: 0.82),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(30),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(28),
+            decoration: BoxDecoration(
+              color: const Color(0xFF10162B),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: Colors.cyanAccent, width: 2),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 70, color: Colors.cyanAccent),
+
+                const SizedBox(height: 18),
+
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                Text(
+                  message,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 16, color: Colors.white70),
+                ),
+
+                const SizedBox(height: 12),
+
+                Text(
+                  'Pontuação: $score',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.cyanAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 25),
+
+                if (result == GameResult.victory && currentLevel < 5)
+                  _resultButton(
+                    'PRÓXIMO NÍVEL',
+                    Icons.arrow_forward,
+                    _nextLevel,
+                  ),
+
+                if (result == GameResult.victory && currentLevel == 5)
+                  _resultButton('FINALIZAR', Icons.check, _goBackToLevels),
+
+                if (result == GameResult.defeat)
+                  _resultButton('REINICIAR', Icons.refresh, _restartLevel),
+
+                const SizedBox(height: 10),
+
+                _resultButton(
+                  'SELEÇÃO DE NÍVEL',
+                  Icons.grid_view,
+                  _goBackToLevels,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _resultButton(String text, IconData icon, VoidCallback onPressed) {
+    return SizedBox(
+      width: double.infinity,
+      height: 52,
+      child: ElevatedButton.icon(
+        onPressed: onPressed,
+        icon: Icon(icon),
+        label: Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF16213E),
+          foregroundColor: Colors.cyanAccent,
+          side: const BorderSide(color: Colors.cyanAccent),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ==========================================================
+  // PAUSA
+  // ==========================================================
 
   void _pauseGame() {
     game.pauseEngine();
@@ -325,9 +576,11 @@ class _GamePageState extends State<GamePage> {
             'Jogo pausado',
             style: TextStyle(color: Colors.white),
           ),
-          content: const Text(
-            'O jogo está pausado.',
-            style: TextStyle(color: Colors.white70),
+          content: Text(
+            'Nível $currentLevel\n'
+            'Pontuação: $score\n'
+            'Vidas: $lives',
+            style: const TextStyle(color: Colors.white70),
           ),
           actions: [
             TextButton(
@@ -358,13 +611,30 @@ class _GamePageState extends State<GamePage> {
 }
 
 // ============================================================
+// RESULTADOS
+// ============================================================
+
+enum GameResult { victory, defeat, finished }
+
+// ============================================================
 // JOGO BRICK RUSH
 // ============================================================
 
 class BrickRushGame extends FlameGame {
   final int level;
 
-  BrickRushGame({required this.level});
+  final VoidCallback onScore;
+  final VoidCallback onLifeLost;
+  final VoidCallback onVictory;
+  final VoidCallback onDefeat;
+
+  BrickRushGame({
+    required this.level,
+    required this.onScore,
+    required this.onLifeLost,
+    required this.onVictory,
+    required this.onDefeat,
+  });
 
   final math.Random random = math.Random();
 
@@ -378,9 +648,11 @@ class BrickRushGame extends FlameGame {
 
   final List<Brick> bricks = [];
 
-  // ----------------------------------------------------------
+  bool finished = false;
+
+  // ==========================================================
   // INICIALIZAÇÃO
-  // ----------------------------------------------------------
+  // ==========================================================
 
   @override
   Future<void> onLoad() async {
@@ -394,9 +666,9 @@ class BrickRushGame extends FlameGame {
     _createBricks();
   }
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // CRIAÇÃO DOS BLOCOS
-  // ----------------------------------------------------------
+  // ==========================================================
 
   void _createBricks() {
     bricks.clear();
@@ -407,7 +679,7 @@ class BrickRushGame extends FlameGame {
     final brickWidth = size.x / columns - 8;
     const brickHeight = 26.0;
 
-    // Níveis ímpares
+    // Padrão para níveis ímpares
     final patternNormal = [
       [1, 1, 1, 1, 1, 1, 1],
       [1, 0, 1, 1, 1, 0, 1],
@@ -416,7 +688,7 @@ class BrickRushGame extends FlameGame {
       [1, 1, 1, 1, 1, 1, 1],
     ];
 
-    // Níveis pares
+    // Padrão para níveis pares
     final patternAlternative = [
       [0, 1, 1, 1, 1, 1, 0],
       [1, 1, 0, 1, 0, 1, 1],
@@ -445,40 +717,46 @@ class BrickRushGame extends FlameGame {
     }
   }
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // ATUALIZAÇÃO DO JOGO
-  // ----------------------------------------------------------
+  // ==========================================================
 
   @override
   void update(double dt) {
     super.update(dt);
 
+    if (finished || size.x <= 0 || size.y <= 0) {
+      return;
+    }
+
     // Movimento da bola
     ballX += velocityX * dt;
     ballY += velocityY * dt;
 
-    // Colisão com parede esquerda
+    // Parede esquerda
     if (ballX <= 10) {
       ballX = 10;
       velocityX = velocityX.abs();
     }
 
-    // Colisão com parede direita
+    // Parede direita
     if (ballX >= size.x - 10) {
       ballX = size.x - 10;
       velocityX = -velocityX.abs();
     }
 
-    // Colisão com teto
+    // Teto
     if (ballY <= 55) {
       ballY = 55;
       velocityY = velocityY.abs();
     }
 
-    // Posição da base
+    // ========================================================
+    // BASE
+    // ========================================================
+
     final paddleY = size.y - 70;
 
-    // Colisão da bola com a base
     if (ballY >= paddleY - 10 &&
         ballY <= paddleY + 20 &&
         ballX >= paddleX - 55 &&
@@ -492,7 +770,6 @@ class BrickRushGame extends FlameGame {
 
       velocityX = difference * 4;
 
-      // Limita velocidade horizontal
       if (velocityX > 450) {
         velocityX = 450;
       }
@@ -502,7 +779,10 @@ class BrickRushGame extends FlameGame {
       }
     }
 
-    // Colisão com os blocos
+    // ========================================================
+    // BLOCOS
+    // ========================================================
+
     for (final brick in bricks) {
       if (!brick.destroyed &&
           ballX >= brick.x &&
@@ -513,38 +793,40 @@ class BrickRushGame extends FlameGame {
 
         velocityY *= -1;
 
+        onScore();
+
         break;
       }
     }
 
-    // Verifica se todos os blocos foram destruídos
+    // ========================================================
+    // VITÓRIA
+    // ========================================================
+
     if (bricks.isNotEmpty && bricks.every((brick) => brick.destroyed)) {
-      _nextRound();
+      finished = true;
+
+      pauseEngine();
+
+      onVictory();
+
+      return;
     }
 
-    // Bola perdida
+    // ========================================================
+    // BOLA PERDIDA
+    // ========================================================
+
     if (ballY > size.y) {
+      onLifeLost();
+
       _resetBall();
     }
   }
 
-  // ----------------------------------------------------------
-  // PRÓXIMA CONFIGURAÇÃO
-  // ----------------------------------------------------------
-
-  void _nextRound() {
-    _createBricks();
-
-    ballX = size.x / 2;
-    ballY = size.y * 0.72;
-
-    velocityX = random.nextBool() ? 180 : -180;
-    velocityY = -220;
-  }
-
-  // ----------------------------------------------------------
+  // ==========================================================
   // REINICIA A BOLA
-  // ----------------------------------------------------------
+  // ==========================================================
 
   void _resetBall() {
     ballX = size.x / 2;
@@ -554,9 +836,9 @@ class BrickRushGame extends FlameGame {
     velocityY = -220;
   }
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // MOVIMENTO DA BASE
-  // ----------------------------------------------------------
+  // ==========================================================
 
   void movePaddle(double x) {
     if (size.x <= 0) {
@@ -566,9 +848,9 @@ class BrickRushGame extends FlameGame {
     paddleX = x.clamp(55.0, size.x - 55.0);
   }
 
-  // ----------------------------------------------------------
-  // DESENHO
-  // ----------------------------------------------------------
+  // ==========================================================
+  // DESENHO DO JOGO
+  // ==========================================================
 
   @override
   void render(Canvas canvas) {
@@ -584,7 +866,7 @@ class BrickRushGame extends FlameGame {
       ..color = Colors.cyanAccent
       ..strokeWidth = 2;
 
-    canvas.drawLine(Offset(0, 52), Offset(size.x, 52), borderPaint);
+    canvas.drawLine(const Offset(0, 52), Offset(size.x, 52), borderPaint);
 
     // Bola
     final ballPaint = Paint()..color = Colors.cyanAccent;
@@ -624,7 +906,7 @@ class BrickRushGame extends FlameGame {
 }
 
 // ============================================================
-// MODELO DO BLOCO
+// MODELO DOS BLOCOS
 // ============================================================
 
 class Brick {
