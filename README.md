@@ -4,25 +4,27 @@
 
 Aplicativo móvel desenvolvido como parte da disciplina **Projeto Integrador VI-A**, com a proposta de desenvolver um jogo inspirado no clássico **Brick Breaker (Breakout)**.
 
-O projeto será desenvolvido utilizando **Flutter** e **Dart**, com utilização do **Flame Engine** para a implementação dos elementos e mecânicas do jogo.
+O projeto foi desenvolvido utilizando **Flutter** e **Dart**, com utilização do **Flame Engine** para implementação dos elementos e mecânicas do jogo.
 
 ---
 
 ## 🎮 Sobre o projeto
 
-O Brick Rush é um jogo mobile baseado no conceito clássico do Brick Breaker.
+O **Brick Rush** é um jogo mobile baseado no conceito clássico do Brick Breaker.
 
 O jogador controla uma plataforma móvel, denominada **paddle**, responsável por rebater uma bola que se movimenta pela área de jogo.
 
-O objetivo é destruir todos os blocos presentes na parte superior da tela. Ao destruir todos os blocos de uma fase, o próximo nível será iniciado automaticamente.
+O objetivo é destruir todos os blocos presentes na parte superior da tela.
 
-O jogo contará com diferentes configurações de paredes de blocos, incluindo padrões fixos e estruturas que poderão utilizar aleatoriedade.
+Ao destruir todos os blocos de uma fase, o jogador recebe uma tela de vitória e pode avançar para o próximo nível.
+
+O jogo possui diferentes configurações de paredes de blocos, utilizando padrões predefinidos para os níveis.
 
 ---
 
 ## 🎯 Objetivo
 
-O objetivo principal do projeto é projetar, prototipar e posteriormente implementar uma aplicação para dispositivos móveis, aplicando conceitos de:
+O objetivo principal do projeto é desenvolver uma aplicação para dispositivos móveis aplicando conceitos de:
 
 - Desenvolvimento para dispositivos móveis;
 - Componentes de interface;
@@ -31,77 +33,165 @@ O objetivo principal do projeto é projetar, prototipar e posteriormente impleme
 - Interação com o usuário;
 - Desenvolvimento de jogos;
 - Controle de colisões;
-- Reprodução de sons;
 - Organização de projetos de software;
-- Fundamentos de Inteligência Artificial e aleatoriedade.
+- Estruturação de níveis;
+- Controle de estados do jogo;
+- Controle de versão com Git e GitHub.
 
 ---
 
-## 📱 Funcionalidades planejadas
+## 📱 Funcionalidades
 
-A aplicação contará inicialmente com uma tela principal contendo três opções:
+A aplicação possui as seguintes funcionalidades:
 
-### 1. Integrantes
+### 1. Menu principal
 
-Tela destinada à apresentação do integrante responsável pelo desenvolvimento do projeto.
+O menu principal apresenta as opções:
 
-### 2. Iniciar jogo
+- **JOGAR**
+- **INTEGRANTES**
+- **CONFIGURAÇÕES**
 
-Permite iniciar o jogo e acessar os diferentes níveis do Brick Rush.
+### 2. Integrantes
 
-### 3. Configurações
+Apresenta as informações do integrante responsável pelo desenvolvimento:
 
-Permite configurar características relacionadas ao padrão visual dos blocos e aos tamanhos utilizados na construção das paredes.
+**Denver Ritter**
+
+Projeto Integrador VI-A  
+Brick Rush
+
+### 3. Seleção de níveis
+
+O jogador pode selecionar entre **5 níveis** diferentes:
+
+- Nível 1;
+- Nível 2;
+- Nível 3;
+- Nível 4;
+- Nível 5.
+
+### 4. Controle da base
+
+A base pode ser movimentada horizontalmente através da interação com a tela.
+
+O jogador pode utilizar o toque e o movimento horizontal para posicionar o paddle.
+
+### 5. Movimento da bola
+
+A bola possui movimentação automática pela área de jogo.
+
+Ela realiza colisões com:
+
+- Parede esquerda;
+- Parede direita;
+- Teto;
+- Paddle;
+- Blocos.
+
+### 6. Destruição dos blocos
+
+Quando a bola colide com um bloco, o bloco é destruído e a pontuação do jogador é incrementada.
+
+### 7. Sistema de pontuação
+
+Cada bloco destruído adiciona pontos ao jogador.
+
+A pontuação é apresentada na interface durante a partida.
+
+### 8. Sistema de vidas
+
+O jogador possui **3 vidas por nível**.
+
+Quando a bola ultrapassa a parte inferior da tela, uma vida é perdida.
+
+Ao perder todas as vidas, é apresentada a tela de **DERROTA**.
+
+### 9. Reinício da fase
+
+Após uma derrota, o jogador pode selecionar a opção:
+
+**REINICIAR**
+
+A fase é carregada novamente com três vidas.
+
+### 10. Sistema de vitória
+
+Quando todos os blocos do nível são destruídos, é apresentada a tela:
+
+**VITÓRIA!**
+
+O jogador pode então avançar para o próximo nível.
+
+### 11. Progressão dos níveis
+
+O jogo possui cinco níveis.
+
+A progressão ocorre através da opção:
+
+**PRÓXIMO NÍVEL**
+
+Após completar o nível 5, o jogo apresenta a tela de conclusão:
+
+**BRICK RUSH CONCLUÍDO!**
+
+### 12. Sistema de pausa
+
+Durante a partida, o jogador pode pausar o jogo.
+
+A tela de pausa apresenta as opções:
+
+- **CONTINUAR**
+- **SAIR**
 
 ---
 
 ## 🧱 Níveis do jogo
 
-O jogo será composto por pelo menos **5 níveis diferentes**.
+O Brick Rush possui **5 níveis**.
 
-Cada nível possuirá uma configuração própria de blocos.
+Cada nível utiliza uma configuração de blocos baseada em uma estrutura semelhante a uma matriz.
 
-As paredes poderão ser:
+Cada posição pode representar:
 
-- Fixas;
-- Geradas a partir de padrões predefinidos;
-- Geradas utilizando algum nível de aleatoriedade.
+- `1` — existência de um bloco;
+- `0` — espaço vazio.
 
-A representação dos blocos será baseada em uma estrutura semelhante a uma matriz, na qual cada posição poderá representar a existência ou ausência de um bloco.
+Os níveis utilizam diferentes padrões de organização dos blocos.
 
-Ao destruir todos os blocos de um nível, o próximo nível será iniciado automaticamente.
+Os padrões são definidos no código e utilizados durante a criação da fase.
 
 ---
 
-## ⚙️ Mecânicas previstas
+## ⚙️ Mecânicas do jogo
 
-Entre as principais mecânicas do jogo estão:
+As principais mecânicas implementadas são:
 
-- Movimento da bola;
-- Movimento do paddle;
-- Colisão da bola com as paredes;
-- Colisão da bola com o paddle;
-- Colisão da bola com os blocos;
-- Destruição dos blocos após colisão;
-- Progressão automática entre os níveis;
-- Reprodução de som no início da fase;
-- Reprodução de som quando a bola atingir o paddle;
-- Tratamento da perda da bola;
-- Opção de reiniciar o nível atual;
-- Opção de avançar para o próximo nível.
+- Movimento automático da bola;
+- Movimento horizontal do paddle;
+- Colisão com as paredes;
+- Colisão com o paddle;
+- Colisão com os blocos;
+- Destruição dos blocos;
+- Sistema de pontuação;
+- Sistema de vidas;
+- Sistema de vitória;
+- Sistema de derrota;
+- Reinício da fase;
+- Progressão entre os níveis;
+- Sistema de pausa;
+- Seleção de níveis.
 
 ---
 
 ## 🛠️ Tecnologias
-
-As principais tecnologias utilizadas no desenvolvimento são:
 
 | Tecnologia | Utilização |
 |---|---|
 | Flutter | Desenvolvimento da aplicação mobile |
 | Dart | Linguagem de programação |
 | Flame Engine | Desenvolvimento das mecânicas do jogo |
-| Android Studio | Ambiente de desenvolvimento e gerenciamento do Android SDK |
+| Android SDK | Compilação e execução para Android |
 | Visual Studio Code | Editor de código |
 | Git | Controle de versão |
 | GitHub | Hospedagem do código e documentação |
@@ -114,9 +204,9 @@ Mais detalhes podem ser encontrados em:
 
 ## 🎨 Wireframes
 
-O projeto conta com wireframes de alta definição para representar a estrutura das telas antes da implementação.
+O projeto possui wireframes de alta definição utilizados para representar a estrutura das telas da aplicação.
 
-Foram planejadas as seguintes telas:
+Foram documentadas as seguintes telas:
 
 - Tela inicial;
 - Menu principal;
@@ -136,77 +226,23 @@ A documentação dos wireframes está disponível em:
 
 ➡️ [Documentação dos Wireframes](docs/02-wireframes.md)
 
+As imagens dos wireframes estão disponíveis em:
+
+`docs/wireframes/`
+
 ---
 
 ## 🧩 Construção dos níveis
 
-A construção das paredes de blocos será documentada considerando uma estrutura semelhante a uma matriz.
+A construção das paredes de blocos utiliza uma estrutura semelhante a uma matriz.
 
-Cada posição da matriz poderá representar:
+Cada posição da matriz representa a existência ou ausência de um bloco.
 
-- `1` — existência de um bloco;
-- `0` — espaço vazio.
-
-Essa abordagem permite criar diferentes formatos de paredes e também aplicar aleatoriedade na composição dos níveis.
-
-Mais informações:
-
-➡️ [Construção das paredes de blocos e níveis](docs/03-construcao-dos-niveis.md)
-
----
-
-## 📂 Organização da documentação
-
-A documentação do projeto está organizada da seguinte forma:
+Exemplo:
 
 ```text
-brick-rush/
-│
-├── apk/
-│   └── brick-rush.apk
-│
-├── docs/
-│   ├── wireframes/
-│   ├── 01-tecnologias.md
-│   ├── 02-wireframes.md
-│   └── 03-construcao-dos-niveis.md
-│
-├── lib/
-├── android/
-├── assets/
-├── test/
-│
-├── README.md
-├── pubspec.yaml
-└── .gitignore
-```
-
----
-
-## 📦 APK
-
-O arquivo APK da aplicação está disponível no repositório GitHub.
-
-➡️ [📱 Baixar Brick Rush APK](apk/brick-rush.apk)
-
-**Local do arquivo:**
-
-```text
-apk/brick-rush.apk
-```
-
----
-
-## 📚 Documentação
-
-### 01 — Tecnologias e Ambiente
-
-[📄 Tecnologias, ambiente de desenvolvimento e geração do APK](docs/01-tecnologias.md)
-
-### 02 — Wireframes
-
-[🎨 Wireframes e fluxo de navegação](docs/02-wireframes.md)
-
-### 03 — Construção dos Níveis
-
-[🧱 Construção das paredes de blocos e níveis](docs/03-construcao-dos-niveis.md)    
+1 1 1 1 1 1 1
+1 0 1 1 1 0 1
+1 1 0 1 0 1 1
+1 1 1 0 1 1 1
+1 1 1 1 1 1 1
