@@ -174,3 +174,12 @@ brick-rush/
 ├── README.md
 ├── pubspec.yaml
 └── .gitignore
+---
+
+## 📦 APK
+
+O arquivo APK da aplicação está disponível no repositório:
+
+[📱 Baixar Brick Rush APK](apk/brick-rush.apk)
+
+Arquivo: `apk/brick-rush.apk`
