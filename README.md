@@ -94,7 +94,7 @@ Entre as principais mecânicas do jogo estão:
 
 ## 🛠️ Tecnologias
 
-As principais tecnologias previstas para o desenvolvimento são:
+As principais tecnologias utilizadas no desenvolvimento são:
 
 | Tecnologia | Utilização |
 |---|---|
@@ -114,21 +114,23 @@ Mais detalhes podem ser encontrados em:
 
 ## 🎨 Wireframes
 
-O projeto contará com wireframes de alta definição para representar a estrutura das telas antes da implementação.
+O projeto conta com wireframes de alta definição para representar a estrutura das telas antes da implementação.
 
-Serão planejadas as seguintes telas:
+Foram planejadas as seguintes telas:
 
 - Tela inicial;
+- Menu principal;
 - Tela de integrantes;
 - Tela de configurações;
-- Tela de seleção/início do jogo;
+- Tela de seleção de nível;
 - Nível 1;
 - Nível 2;
 - Nível 3;
 - Nível 4;
 - Nível 5;
-- Tela de perda;
-- Tela de conclusão de nível.
+- Tela de pausa;
+- Tela de resultado;
+- Tela de perda.
 
 A documentação dos wireframes está disponível em:
 
@@ -160,6 +162,9 @@ A documentação do projeto está organizada da seguinte forma:
 ```text
 brick-rush/
 │
+├── apk/
+│   └── brick-rush.apk
+│
 ├── docs/
 │   ├── wireframes/
 │   ├── 01-tecnologias.md
@@ -174,12 +179,34 @@ brick-rush/
 ├── README.md
 ├── pubspec.yaml
 └── .gitignore
+```
+
 ---
 
 ## 📦 APK
 
-O arquivo APK da aplicação está disponível no repositório:
+O arquivo APK da aplicação está disponível no repositório GitHub.
 
-[📱 Baixar Brick Rush APK](apk/brick-rush.apk)
+➡️ [📱 Baixar Brick Rush APK](apk/brick-rush.apk)
 
-Arquivo: `apk/brick-rush.apk`
+**Local do arquivo:**
+
+```text
+apk/brick-rush.apk
+```
+
+---
+
+## 📚 Documentação
+
+### 01 — Tecnologias e Ambiente
+
+[📄 Tecnologias, ambiente de desenvolvimento e geração do APK](docs/01-tecnologias.md)
+
+### 02 — Wireframes
+
+[🎨 Wireframes e fluxo de navegação](docs/02-wireframes.md)
+
+### 03 — Construção dos Níveis
+
+[🧱 Construção das paredes de blocos e níveis](docs/03-construcao-dos-niveis.md)
